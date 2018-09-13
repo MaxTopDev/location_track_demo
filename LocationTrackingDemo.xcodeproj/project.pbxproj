@@ -99,6 +99,7 @@
 				78F1D30A214A81C900EB663F /* Sources */,
 				78F1D30B214A81C900EB663F /* Frameworks */,
 				78F1D30C214A81C900EB663F /* Resources */,
+				3F6A5DB23A5329EE95C3ADDC /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -121,6 +122,11 @@
 				TargetAttributes = {
 					78F1D30D214A81C900EB663F = {
 						CreatedOnToolsVersion = 9.4;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -156,6 +162,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		3F6A5DB23A5329EE95C3ADDC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-LocationTrackingDemo/Pods-LocationTrackingDemo-frameworks.sh",
+				"${PODS_ROOT}/jedai.pod/Framework/JedAI.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JedAI.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LocationTrackingDemo/Pods-LocationTrackingDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		C449798C97FF78260F08E988 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

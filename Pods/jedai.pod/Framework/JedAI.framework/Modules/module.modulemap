@@ -1,0 +1,6 @@
+framework module JedAI {
+    umbrella header "JedAI.h"
+    
+    export *
+    module * { export * }
+}

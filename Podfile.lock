@@ -1,3 +1,22 @@
-PODFILE CHECKSUM: ec05fa01dd33bf4526e0eaf257ae462944753ad6
+PODS:
+  - jedai.pod (4.2.1)
+
+DEPENDENCIES:
+  - jedai.pod (from `https://github.com/AnagogLtd/JedAI.git`, tag `4.2.1`)
+
+EXTERNAL SOURCES:
+  jedai.pod:
+    :git: https://github.com/AnagogLtd/JedAI.git
+    :tag: 4.2.1
+
+CHECKOUT OPTIONS:
+  jedai.pod:
+    :git: https://github.com/AnagogLtd/JedAI.git
+    :tag: 4.2.1
+
+SPEC CHECKSUMS:
+  jedai.pod: 1c74e6d838220b7bf8097826dc4c5e4d006f0bb9
+
+PODFILE CHECKSUM: 75813956a71ce03267e09cc2931fd0dc1d0341dd
 
 COCOAPODS: 1.5.3

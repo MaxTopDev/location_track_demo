@@ -1,0 +1,11 @@
+Anagog SDK License Notice
+
+This SDK is not open source software or public software. It is the proprietary software of Anagog Ltd. and, unless otherwise agreed in writing with Anagog Ltd., no rights are granted to you in respect of the SDK.
+
+This SDK is subject to, and may only be used in accordance with the terms of (and obligations imposed by) a separate commercial license agreement with Anagog Ltd.
+
+You may not copy or use this SDK in any manner without first entering into an agreement with and obtaining a license from Anagog Ltd.
+
+In order to request a license to use this SDK and an activation key from Anagog Ltd., please contact Anagog Ltd. directly at info@anagog.com.
+
+Anagog Ltd. reserves the right, in its sole discretion, to grant or reject requests for licenses to this SDK.
