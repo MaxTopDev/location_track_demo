@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		52D72D9464B70A75FC22D3C9 /* Pods_LocationTrackingDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 255BC67AE533626F50B6CEDB /* Pods_LocationTrackingDemo.framework */; };
 		78F1D312214A81C900EB663F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F1D311214A81C900EB663F /* AppDelegate.swift */; };
-		78F1D314214A81C900EB663F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F1D313214A81C900EB663F /* ViewController.swift */; };
+		78F1D314214A81C900EB663F /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F1D313214A81C900EB663F /* MapViewController.swift */; };
 		78F1D317214A81C900EB663F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78F1D315214A81C900EB663F /* Main.storyboard */; };
 		78F1D319214A81CA00EB663F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78F1D318214A81CA00EB663F /* Assets.xcassets */; };
 		78F1D31C214A81CA00EB663F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78F1D31A214A81CA00EB663F /* LaunchScreen.storyboard */; };
@@ -20,7 +20,7 @@
 		5C58B43BFA02FBC0F7132433 /* Pods-LocationTrackingDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationTrackingDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LocationTrackingDemo/Pods-LocationTrackingDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		78F1D30E214A81C900EB663F /* LocationTrackingDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocationTrackingDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78F1D311214A81C900EB663F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		78F1D313214A81C900EB663F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		78F1D313214A81C900EB663F /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		78F1D316214A81C900EB663F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		78F1D318214A81CA00EB663F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		78F1D31B214A81CA00EB663F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -70,7 +70,7 @@
 			isa = PBXGroup;
 			children = (
 				78F1D311214A81C900EB663F /* AppDelegate.swift */,
-				78F1D313214A81C900EB663F /* ViewController.swift */,
+				78F1D313214A81C900EB663F /* MapViewController.swift */,
 				78F1D315214A81C900EB663F /* Main.storyboard */,
 				78F1D318214A81CA00EB663F /* Assets.xcassets */,
 				78F1D31A214A81CA00EB663F /* LaunchScreen.storyboard */,
@@ -161,15 +161,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-LocationTrackingDemo-checkManifestLockResult.txt",
 			);
@@ -185,7 +181,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				78F1D314214A81C900EB663F /* ViewController.swift in Sources */,
+				78F1D314214A81C900EB663F /* MapViewController.swift in Sources */,
 				78F1D312214A81C900EB663F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -263,7 +259,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -317,7 +313,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -334,6 +330,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = LocationTrackingDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -354,6 +351,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = LocationTrackingDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
