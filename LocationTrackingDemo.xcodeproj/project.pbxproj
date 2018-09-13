@@ -13,6 +13,8 @@
 		78F1D317214A81C900EB663F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78F1D315214A81C900EB663F /* Main.storyboard */; };
 		78F1D319214A81CA00EB663F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78F1D318214A81CA00EB663F /* Assets.xcassets */; };
 		78F1D31C214A81CA00EB663F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78F1D31A214A81CA00EB663F /* LaunchScreen.storyboard */; };
+		78F1D324214A87E000EB663F /* LocationTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F1D323214A87E000EB663F /* LocationTracker.swift */; };
+		78F1D327214A905D00EB663F /* JediWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F1D326214A905D00EB663F /* JediWrapper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +27,8 @@
 		78F1D318214A81CA00EB663F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		78F1D31B214A81CA00EB663F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		78F1D31D214A81CA00EB663F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		78F1D323214A87E000EB663F /* LocationTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTracker.swift; sourceTree = "<group>"; };
+		78F1D326214A905D00EB663F /* JediWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JediWrapper.swift; sourceTree = "<group>"; };
 		A6A8598BA62E3C2D3DABA846 /* Pods-LocationTrackingDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationTrackingDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-LocationTrackingDemo/Pods-LocationTrackingDemo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -70,6 +74,8 @@
 			isa = PBXGroup;
 			children = (
 				78F1D311214A81C900EB663F /* AppDelegate.swift */,
+				78F1D323214A87E000EB663F /* LocationTracker.swift */,
+				78F1D326214A905D00EB663F /* JediWrapper.swift */,
 				78F1D313214A81C900EB663F /* MapViewController.swift */,
 				78F1D315214A81C900EB663F /* Main.storyboard */,
 				78F1D318214A81CA00EB663F /* Assets.xcassets */,
@@ -206,7 +212,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				78F1D314214A81C900EB663F /* MapViewController.swift in Sources */,
+				78F1D327214A905D00EB663F /* JediWrapper.swift in Sources */,
 				78F1D312214A81C900EB663F /* AppDelegate.swift in Sources */,
+				78F1D324214A87E000EB663F /* LocationTracker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

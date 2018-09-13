@@ -13,8 +13,16 @@ class MapViewController: UIViewController {
 
     @IBOutlet weak var mapView: MKMapView!
     
+    let locationTracker = LocationTracker()
+    let jediWrapper = JediWrapper()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        locationTracker.askForLocationPermission { [unowned self] (determined, allowed) in
+            if allowed == true {
+                self.jediWrapper.start()
+            }
+        }
     }
     
 }
