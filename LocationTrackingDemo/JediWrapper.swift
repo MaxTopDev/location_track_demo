@@ -13,8 +13,10 @@ class JediWrapper: NSObject {
     
     private lazy var jedAi: JedAI = { [unowned self] in
         let shared = JedAI.sharedInstance()
-        let eventConfig = EventConfig()
-        shared?.registerEvents(self, eventConfig: eventConfig)
+        let eventConfigBuilder = EventConfigBuilder()
+        eventConfigBuilder.onEventTypes(VISIT_TYPE.ACTIVITY_START_EVENT_TYPE.rawValue | VISIT_TYPE.ACTIVITY_END_EVENT_TYPE.rawValue)
+        eventConfigBuilder.hasPoiNames(["Airport", "Park"])
+        shared?.registerEvents(self, eventConfig: eventConfigBuilder.build())
         return shared!
     }()
     

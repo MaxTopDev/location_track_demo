@@ -55,7 +55,7 @@ class LocationTracker: NSObject {
      - Parameters:
          - completion: completion block of get location process
      */
-    func getUserLocation(withCompletion completion: @escaping LocationCompletion) {
+    func getUserLocation(completion: @escaping LocationCompletion) {
         self.completion = completion
         locationManager.stopUpdatingLocation()
         locationManager.startUpdatingLocation()
