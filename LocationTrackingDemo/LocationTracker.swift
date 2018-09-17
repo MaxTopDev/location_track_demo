@@ -122,11 +122,11 @@ extension LocationTracker: CLLocationManagerDelegate {
      */
     public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.last {
-//            locationManager.stopUpdatingLocation()
+            locationManager.stopUpdatingLocation()
             if let compl = completion {
                 compl(location, nil)
             }
-//            completion = nil
+            completion = nil
         }
     }
     /**

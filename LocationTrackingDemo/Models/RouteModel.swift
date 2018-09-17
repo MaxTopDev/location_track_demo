@@ -23,5 +23,4 @@ class RouteObject: Object {
     @objc dynamic var destination: Location?
     @objc dynamic var startInterval: TimeInterval = 0.0
     @objc dynamic var endInterval: TimeInterval = 0.0
-//    let locations = List<Location>()
 }

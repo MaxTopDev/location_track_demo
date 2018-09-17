@@ -11,26 +11,30 @@ import JedAI
 import RealmSwift
 
 protocol JediWrapperDelegate: class {
-    func onEvent(_ event: RouteObject)
+    func onEventFinished()
 }
 
 class JediWrapper: NSObject {
     
-    private let realm = try! Realm()
+    private var realm: Realm!
     
     private lazy var jedAi: JedAI = { [unowned self] in
-        let shared = JedAI.sharedInstance()
-        let config = ConfigJedAi.createDefaultConfig()
-        shared?.registerEvents(self, eventConfig: config!.build())
-        return shared!
+        let shared = JedAI.sharedInstance()!
+        shared.setup()
+        
+        let builder = EventConfigBuilder()
+        builder.onEventTypes(VISIT_TYPE.ACTIVITY_START_EVENT_TYPE.rawValue | VISIT_TYPE.ACTIVITY_END_EVENT_TYPE.rawValue)
+        shared.setActivityRecognitionEnabled(true)
+        shared.registerEvents(self, eventConfig: builder.build())
+        return shared
     }()
     
-    weak var delegate: JediWrapperDelegate?
-    
-    class func setup() {
-        JedAI.sharedInstance().setup()
-        DevTools.setLogLevel(LOG_LEVEL.VERBOSE)
+    init(realm: Realm) {
+        super.init()
+        self.realm = realm
     }
+    
+    weak var delegate: JediWrapperDelegate?
     
     func unregister() {
         JedAI.sharedInstance().unregisterEvents(self)
@@ -72,7 +76,7 @@ class JediWrapper: NSObject {
             try! self.realm.write { self.realm.add(routeObject) }
         }
         
-        delegate?.onEvent(routeObject)
+        delegate?.onEventFinished()
     }
 }
 
@@ -80,21 +84,55 @@ extension JediWrapper: JedAIEventDelegate {
     
     func onEvent(_ event: JedAIEvent) {
         
-        let location = Location()
-        location.latitude = event.location.latitude
-        location.longitude = event.location.longitude
-        location.eventTimestamp = event.eventTimestamp
-        location.eventType = event.eventType
-        
-        let routeObject = RouteObject()
-        routeObject.origin = location
-        routeObject.destination = location
-        
-        DispatchQueue.main.async {
-            try! self.realm.write { self.realm.add(routeObject) }
+        if let rideEvent = event as? ActivityInRideEvent {
+            
+            let location = Location()
+            location.latitude = event.location.latitude
+            location.longitude = event.location.longitude
+            location.eventTimestamp = event.eventTimestamp
+            location.eventType = event.eventType
+            
+            if rideEvent.isStart {
+                let routeObject = RouteObject()
+                routeObject.origin = location
+                routeObject.startInterval = Date().timeIntervalSince1970
+                
+                DispatchQueue.main.async {
+                    try! self.realm.write {
+                        self.realm.add(routeObject)
+                    }
+                }
+            } else {
+                
+                let routeObjects = self.realm.objects(RouteObject.self).filter("endInterval == %@", 0.0)
+                
+                if let route = routeObjects.first {
+                    DispatchQueue.main.async {
+                        try! self.realm.write {
+                            route.destination = location
+                            route.endInterval = Date().timeIntervalSince1970
+                        }
+                    }
+                }
+                delegate?.onEventFinished()
+            }
         }
-        
-        delegate?.onEvent(routeObject)
+    }
+    
+}
+
+// DB helper methods
+extension JediWrapper {
+    
+    func fetchLocations(from fromDate: Date, to toDate: Date) -> [CLLocation]? {
+        let predicate = NSPredicate(format: "timestamp >= %@ && timestamp <= %@", argumentArray: [fromDate, Date()])
+        let sortDescriptor = NSSortDescriptor.init(key: "timestamp", ascending: false)
+        let result = jedAi.getLocationHistory(by: predicate, sortDescriptors: [sortDescriptor])
+        if let locations = result as? [CLLocation] {
+            return locations
+        } else {
+            return nil
+        }
     }
     
 }

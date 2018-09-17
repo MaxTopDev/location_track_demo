@@ -18,41 +18,38 @@ class MapViewController: UIViewController {
 
     @IBOutlet weak var mapView: MKMapView! {
         didSet {
+            mapView.showsUserLocation = true
             mapView.delegate = self
         }
     }
     
     let realm = try! Realm()
     let locationTracker = LocationTracker()
-    let jediWrapper = JediWrapper()
+    var jediWrapper: JediWrapper!
     var routes: Results<RouteObject>!
-    var previousLocation: CLLocation?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        jediWrapper = JediWrapper(realm: realm)
         jediWrapper.delegate = self
         routes = realm.objects(RouteObject.self)
         locationTracker.askForLocationPermission { [unowned self] (determined, allowed) in
             if allowed == true {
                 self.jediWrapper.start()
-                self.locationTracker.getUserLocation(completion: { (location, error) in
-                    if self.previousLocation == nil {
-                        let center = CLLocationCoordinate2D(latitude: location!.coordinate.latitude, longitude: location!.coordinate.longitude)
-                        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
-                        self.mapView.setRegion(region, animated: true)
-                        
-                        let myAnnotation: MKPointAnnotation = MKPointAnnotation()
-                        myAnnotation.coordinate = CLLocationCoordinate2DMake(location!.coordinate.latitude, location!.coordinate.longitude);
-                        myAnnotation.title = "Current location"
-                        self.mapView.addAnnotation(myAnnotation)
-                    } else {
-//                        self.jediWrapper.onEventFake(cllocation: location!)
-                    }
-                    self.previousLocation = location
-                    
-//                    self.jediWrapper.simulate(origin: self.previousLocation!.coordinate, destination: location!.coordinate)
+                self.locationTracker.getUserLocation(completion: { [unowned self] (location, error) in
+                    guard let loc = location else { return }
+                    let center = CLLocationCoordinate2D(latitude: loc.coordinate.latitude, longitude: loc.coordinate.longitude)
+                    let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
+                    self.mapView.setRegion(region, animated: true)
                 })
             }
+        }
+        
+        if let locations = jediWrapper.fetchLocations(from: Date(timeIntervalSince1970: 1537187700), to: Date()) {
+            constructRoute(locations: locations)
+        }
+        if let route = routes.last {
+            show(route: route)
         }
     }
     
@@ -61,28 +58,31 @@ class MapViewController: UIViewController {
         jediWrapper.unregister()
     }
     
-    func updateRoute() {
+    func constructRoute(locations: [CLLocation]) {
         self.mapView.removeOverlays(self.mapView.overlays)
-        self.mapView.removeAnnotations(self.mapView.annotations)
         DispatchQueue.main.async {
-            let routeArray = Array(self.routes)
-            let annotations = routeArray.map { (routeObject) -> MKAnnotation in
-                let annotation = CustomAnnotation()
-                annotation.coordinate = CLLocationCoordinate2DMake(routeObject.destination!.latitude, routeObject.destination!.longitude)
-                return annotation
-            }
-            self.mapView.addAnnotations(annotations)
-            
-            let coordinates = annotations.map({$0.coordinate})
-            let myPolyline = MKPolyline.init(coordinates: coordinates, count: coordinates.count)
+            let coordinates = locations.map({$0.coordinate})
+            let myPolyline = MKPolyline(coordinates: coordinates, count: coordinates.count)
             self.mapView.add(myPolyline)
         }
     }
     
 }
 
-extension MapViewController: MKMapViewDelegate {
+extension MapViewController {
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ToListController" {
+            let controller = segue.destination as! ListViewController
+            controller.delegate = self
+            controller.routes = self.routes
+        }
+    }
+    
+}
+
+extension MapViewController: MKMapViewDelegate {
+
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         if overlay is MKPolyline {
             let lineView = MKPolylineRenderer(overlay: overlay)
@@ -96,8 +96,24 @@ extension MapViewController: MKMapViewDelegate {
 
 extension MapViewController: JediWrapperDelegate {
     
-    func onEvent(_ event: RouteObject) {
-        updateRoute()
+    func onEventFinished() {
+        if let latestRoute = routes.last {
+            show(route: latestRoute)
+        }
+    }
+    
+}
+
+extension MapViewController: ListViewControllerDelegate {
+    
+    func show(route: RouteObject) {
+        if let locations = jediWrapper.fetchLocations(from: Date(timeIntervalSince1970: route.startInterval), to: Date(timeIntervalSince1970: route.endInterval)) {
+            constructRoute(locations: locations)
+        }
+    }
+    
+    func clearAll() {
+        self.mapView.removeOverlays(self.mapView.overlays)
     }
     
 }

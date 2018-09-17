@@ -8,10 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		52D72D9464B70A75FC22D3C9 /* Pods_LocationTrackingDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 255BC67AE533626F50B6CEDB /* Pods_LocationTrackingDemo.framework */; };
-		782AC7AE214BD671009EC433 /* GpsiesTrack-2.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 782AC7AD214BD671009EC433 /* GpsiesTrack-2.gpx */; };
-		782AC7B0214BD6F4009EC433 /* GpsiesTrack.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 782AC7AF214BD6F3009EC433 /* GpsiesTrack.gpx */; };
-		782AC7B4214BD7E4009EC433 /* ConfigJedAi.m in Sources */ = {isa = PBXBuildFile; fileRef = 782AC7B3214BD7E4009EC433 /* ConfigJedAi.m */; };
-		7867753E214B9B9B00846CA3 /* RouteSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7867753D214B9B9B00846CA3 /* RouteSegment.swift */; };
+		78636511214FA016004AF250 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78636510214FA016004AF250 /* ListViewController.swift */; };
+		7867753E214B9B9B00846CA3 /* RouteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7867753D214B9B9B00846CA3 /* RouteModel.swift */; };
 		78F1D312214A81C900EB663F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F1D311214A81C900EB663F /* AppDelegate.swift */; };
 		78F1D314214A81C900EB663F /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F1D313214A81C900EB663F /* MapViewController.swift */; };
 		78F1D317214A81C900EB663F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78F1D315214A81C900EB663F /* Main.storyboard */; };
@@ -24,12 +22,9 @@
 /* Begin PBXFileReference section */
 		255BC67AE533626F50B6CEDB /* Pods_LocationTrackingDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LocationTrackingDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C58B43BFA02FBC0F7132433 /* Pods-LocationTrackingDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationTrackingDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LocationTrackingDemo/Pods-LocationTrackingDemo.debug.xcconfig"; sourceTree = "<group>"; };
-		782AC7AD214BD671009EC433 /* GpsiesTrack-2.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "GpsiesTrack-2.gpx"; sourceTree = "<group>"; };
-		782AC7AF214BD6F3009EC433 /* GpsiesTrack.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = GpsiesTrack.gpx; sourceTree = "<group>"; };
 		782AC7B1214BD7E4009EC433 /* LocationTrackingDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LocationTrackingDemo-Bridging-Header.h"; sourceTree = "<group>"; };
-		782AC7B2214BD7E4009EC433 /* ConfigJedAi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConfigJedAi.h; sourceTree = "<group>"; };
-		782AC7B3214BD7E4009EC433 /* ConfigJedAi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConfigJedAi.m; sourceTree = "<group>"; };
-		7867753D214B9B9B00846CA3 /* RouteSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteSegment.swift; sourceTree = "<group>"; };
+		78636510214FA016004AF250 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		7867753D214B9B9B00846CA3 /* RouteModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteModel.swift; sourceTree = "<group>"; };
 		78F1D30E214A81C900EB663F /* LocationTrackingDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocationTrackingDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78F1D311214A81C900EB663F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		78F1D313214A81C900EB663F /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -65,9 +60,7 @@
 		7867753C214B9B9B00846CA3 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				7867753D214B9B9B00846CA3 /* RouteSegment.swift */,
-				782AC7B2214BD7E4009EC433 /* ConfigJedAi.h */,
-				782AC7B3214BD7E4009EC433 /* ConfigJedAi.m */,
+				7867753D214B9B9B00846CA3 /* RouteModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -75,8 +68,6 @@
 		78F1D305214A81C900EB663F = {
 			isa = PBXGroup;
 			children = (
-				782AC7AD214BD671009EC433 /* GpsiesTrack-2.gpx */,
-				782AC7AF214BD6F3009EC433 /* GpsiesTrack.gpx */,
 				78F1D310214A81C900EB663F /* LocationTrackingDemo */,
 				78F1D30F214A81C900EB663F /* Products */,
 				B26DD8368E00EAC1E9B1B1BB /* Pods */,
@@ -100,6 +91,7 @@
 				78F1D323214A87E000EB663F /* LocationTracker.swift */,
 				78F1D326214A905D00EB663F /* JediWrapper.swift */,
 				78F1D313214A81C900EB663F /* MapViewController.swift */,
+				78636510214FA016004AF250 /* ListViewController.swift */,
 				78F1D315214A81C900EB663F /* Main.storyboard */,
 				78F1D318214A81CA00EB663F /* Assets.xcassets */,
 				78F1D31A214A81CA00EB663F /* LaunchScreen.storyboard */,
@@ -184,9 +176,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				782AC7B0214BD6F4009EC433 /* GpsiesTrack.gpx in Resources */,
 				78F1D31C214A81CA00EB663F /* LaunchScreen.storyboard in Resources */,
-				782AC7AE214BD671009EC433 /* GpsiesTrack-2.gpx in Resources */,
 				78F1D319214A81CA00EB663F /* Assets.xcassets in Resources */,
 				78F1D317214A81C900EB663F /* Main.storyboard in Resources */,
 			);
@@ -246,8 +236,8 @@
 				78F1D327214A905D00EB663F /* JediWrapper.swift in Sources */,
 				78F1D312214A81C900EB663F /* AppDelegate.swift in Sources */,
 				78F1D324214A87E000EB663F /* LocationTracker.swift in Sources */,
-				7867753E214B9B9B00846CA3 /* RouteSegment.swift in Sources */,
-				782AC7B4214BD7E4009EC433 /* ConfigJedAi.m in Sources */,
+				7867753E214B9B9B00846CA3 /* RouteModel.swift in Sources */,
+				78636511214FA016004AF250 /* ListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
