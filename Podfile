@@ -4,5 +4,6 @@ target 'LocationTrackingDemo' do
   use_frameworks!
   
   pod 'jedai.pod', :git => 'https://github.com/AnagogLtd/JedAI.git', :tag => "4.2.1"
+  pod 'RealmSwift'
 
 end

@@ -1,8 +1,19 @@
 PODS:
   - jedai.pod (4.2.1)
+  - Realm (3.9.0):
+    - Realm/Headers (= 3.9.0)
+  - Realm/Headers (3.9.0)
+  - RealmSwift (3.9.0):
+    - Realm (= 3.9.0)
 
 DEPENDENCIES:
   - jedai.pod (from `https://github.com/AnagogLtd/JedAI.git`, tag `4.2.1`)
+  - RealmSwift
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Realm
+    - RealmSwift
 
 EXTERNAL SOURCES:
   jedai.pod:
@@ -16,7 +27,9 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   jedai.pod: 1c74e6d838220b7bf8097826dc4c5e4d006f0bb9
+  Realm: 3d36f208bf3aff8335dc3298742140182bde4edb
+  RealmSwift: aa4d11917bfcfaa3ed51f219102a487ecd895447
 
-PODFILE CHECKSUM: 75813956a71ce03267e09cc2931fd0dc1d0341dd
+PODFILE CHECKSUM: 76eeff4eb5fa08865dedef6b84fad65ba35eb1e6
 
 COCOAPODS: 1.5.3

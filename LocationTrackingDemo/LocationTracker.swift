@@ -20,6 +20,7 @@ class LocationTracker: NSObject {
     private lazy var locationManager: CLLocationManager = { [unowned self] in
         let locationManager = CLLocationManager()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.distanceFilter = 20;
         locationManager.delegate = self
         return locationManager
         }()
@@ -121,10 +122,11 @@ extension LocationTracker: CLLocationManagerDelegate {
      */
     public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.last {
+//            locationManager.stopUpdatingLocation()
             if let compl = completion {
                 compl(location, nil)
             }
-            completion = nil
+//            completion = nil
         }
     }
     /**
