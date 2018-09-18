@@ -125,7 +125,7 @@ extension JediWrapper: JedAIEventDelegate {
 extension JediWrapper {
     
     func fetchLocations(from fromDate: Date, to toDate: Date) -> [CLLocation]? {
-        let predicate = NSPredicate(format: "timestamp >= %@ && timestamp <= %@", argumentArray: [fromDate, Date()])
+        let predicate = NSPredicate(format: "timestamp >= %@ && timestamp <= %@", argumentArray: [fromDate, toDate])
         let sortDescriptor = NSSortDescriptor.init(key: "timestamp", ascending: false)
         let result = jedAi.getLocationHistory(by: predicate, sortDescriptors: [sortDescriptor])
         if let locations = result as? [CLLocation] {

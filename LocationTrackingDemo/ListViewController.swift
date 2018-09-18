@@ -16,7 +16,12 @@ protocol ListViewControllerDelegate: class {
 
 class ListViewController: UIViewController {
 
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView: UITableView! {
+        didSet {
+            tableView.estimatedRowHeight = 50.0
+            tableView.rowHeight = UITableViewAutomaticDimension
+        }
+    }
     
     var routes: Results<RouteObject>!
     var token: NotificationToken?
@@ -70,10 +75,12 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        cell.textLabel?.numberOfLines = 0
+        cell.detailTextLabel?.numberOfLines = 0
         let item = routes[indexPath.row]
         cell.textLabel?.text = "Start: " + dateFormatter.string(from: Date(timeIntervalSince1970: item.startInterval))
         if item.endInterval == 0.0 {
-            cell.detailTextLabel?.text = ""
+            cell.detailTextLabel?.text = "End: " + dateFormatter.string(from: Date())
         } else {
             cell.detailTextLabel?.text = "End: " + dateFormatter.string(from: Date(timeIntervalSince1970: item.endInterval))
         }

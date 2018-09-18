@@ -92,7 +92,7 @@ class LocationTracker: NSObject {
      */
     func requestLocationPermission(completion: @escaping LocationPermissionCompletion) {
         permissionCompletion = completion
-        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestAlwaysAuthorization()
     }
     
 }

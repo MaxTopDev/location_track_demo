@@ -45,9 +45,6 @@ class MapViewController: UIViewController {
             }
         }
         
-        if let locations = jediWrapper.fetchLocations(from: Date(timeIntervalSince1970: 1537187700), to: Date()) {
-            constructRoute(locations: locations)
-        }
         if let route = routes.last {
             show(route: route)
         }
@@ -60,10 +57,19 @@ class MapViewController: UIViewController {
     
     func constructRoute(locations: [CLLocation]) {
         self.mapView.removeOverlays(self.mapView.overlays)
+        self.mapView.removeAnnotations(self.mapView.annotations)
         DispatchQueue.main.async {
             let coordinates = locations.map({$0.coordinate})
             let myPolyline = MKPolyline(coordinates: coordinates, count: coordinates.count)
             self.mapView.add(myPolyline)
+            
+            if let firstLoc = locations.first, let lastLoc = locations.last {
+                let annotationStart = CustomAnnotation()
+                annotationStart.coordinate = CLLocationCoordinate2DMake(firstLoc.coordinate.latitude, firstLoc.coordinate.longitude)
+                let annotationEnd = CustomAnnotation()
+                annotationEnd.coordinate = CLLocationCoordinate2DMake(lastLoc.coordinate.latitude, lastLoc.coordinate.longitude)
+                self.mapView.showAnnotations([annotationStart, annotationEnd], animated: true)
+            }
         }
     }
     
@@ -107,7 +113,9 @@ extension MapViewController: JediWrapperDelegate {
 extension MapViewController: ListViewControllerDelegate {
     
     func show(route: RouteObject) {
-        if let locations = jediWrapper.fetchLocations(from: Date(timeIntervalSince1970: route.startInterval), to: Date(timeIntervalSince1970: route.endInterval)) {
+        let fromDate = Date(timeIntervalSince1970: route.startInterval)
+        let toDate = route.endInterval == 0.0 ? Date() : Date(timeIntervalSince1970: route.endInterval)
+        if let locations = jediWrapper.fetchLocations(from: fromDate, to: toDate) {
             constructRoute(locations: locations)
         }
     }
