@@ -2,7 +2,7 @@
 //  LocationTracker.swift
 //  LocationTrackingDemo
 //
-//  Created by developer MacBook on 9/13/18.
+//  Created by Ohrimenko Maxim on 9/13/18.
 //  Copyright © 2018 Unicsoft. All rights reserved.
 //
 
@@ -12,6 +12,9 @@ import CoreLocation
 typealias LocationCompletion = (_ location: CLLocation?, _ error: Error?) -> Void
 typealias LocationPermissionCompletion = (_ determined: Bool, _ allowed: Bool) -> Void
 
+/**
+ Class to manage location trackings
+ */
 class LocationTracker: NSObject {
     
     /**
@@ -33,10 +36,6 @@ class LocationTracker: NSObject {
      */
     private var permissionCompletion: LocationPermissionCompletion?
     
-    override init() {
-        super.init()
-    }
-    
     /**
      Prompts user to allow location permission. If user has agreed in first dialog then system dialog will appear to get permission
      - Parameters:
@@ -50,7 +49,6 @@ class LocationTracker: NSObject {
             completion(true, isPermissionAllowed())
         }
     }
-    
     /**
      Returns fresh location in completion block. If it's first time call then it will enable location updates. Must be called only if permission is allowed
      - Parameters:

@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  LocationTrackingDemo
 //
-//  Created by developer MacBook on 9/13/18.
+//  Created by Ohrimenko Maxim on 9/13/18.
 //  Copyright © 2018 Unicsoft. All rights reserved.
 //
 

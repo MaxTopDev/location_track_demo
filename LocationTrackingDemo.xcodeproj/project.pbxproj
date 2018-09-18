@@ -65,6 +65,24 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		7873E2E8215108770009518E /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				78F1D323214A87E000EB663F /* LocationTracker.swift */,
+				78F1D326214A905D00EB663F /* JediWrapper.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		7873E2E9215108870009518E /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				78F1D313214A81C900EB663F /* MapViewController.swift */,
+				78636510214FA016004AF250 /* ListViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		78F1D305214A81C900EB663F = {
 			isa = PBXGroup;
 			children = (
@@ -86,12 +104,10 @@
 		78F1D310214A81C900EB663F /* LocationTrackingDemo */ = {
 			isa = PBXGroup;
 			children = (
+				7873E2E9215108870009518E /* Controllers */,
+				7873E2E8215108770009518E /* Services */,
 				7867753C214B9B9B00846CA3 /* Models */,
 				78F1D311214A81C900EB663F /* AppDelegate.swift */,
-				78F1D323214A87E000EB663F /* LocationTracker.swift */,
-				78F1D326214A905D00EB663F /* JediWrapper.swift */,
-				78F1D313214A81C900EB663F /* MapViewController.swift */,
-				78636510214FA016004AF250 /* ListViewController.swift */,
 				78F1D315214A81C900EB663F /* Main.storyboard */,
 				78F1D318214A81CA00EB663F /* Assets.xcassets */,
 				78F1D31A214A81CA00EB663F /* LaunchScreen.storyboard */,
@@ -191,15 +207,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-LocationTrackingDemo/Pods-LocationTrackingDemo-resources.sh",
 				"${PODS_CONFIGURATION_BUILD_DIR}/HockeySDK/HockeySDKResources.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/HockeySDKResources.bundle",
 			);
