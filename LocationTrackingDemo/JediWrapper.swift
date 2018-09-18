@@ -93,6 +93,17 @@ extension JediWrapper: JedAIEventDelegate {
             location.eventType = event.eventType
             
             if rideEvent.isStart {
+                // finish all previous routes
+                DispatchQueue.main.async {
+                    let routeObjects = self.realm.objects(RouteObject.self).filter("endInterval == %@", 0.0)
+                    routeObjects.forEach { (route) in
+                        try! self.realm.write {
+                            route.destination = location
+                            route.endInterval = Date().timeIntervalSince1970
+                        }
+                    }
+                }
+                
                 let routeObject = RouteObject()
                 routeObject.origin = location
                 routeObject.startInterval = Date().timeIntervalSince1970
@@ -102,12 +113,12 @@ extension JediWrapper: JedAIEventDelegate {
                         self.realm.add(routeObject)
                     }
                 }
+                
             } else {
                 
-                let routeObjects = self.realm.objects(RouteObject.self).filter("endInterval == %@", 0.0)
-                
-                if let route = routeObjects.first {
-                    DispatchQueue.main.async {
+                DispatchQueue.main.async {
+                    let routeObjects = self.realm.objects(RouteObject.self).filter("endInterval == %@", 0.0)
+                    if let route = routeObjects.first {
                         try! self.realm.write {
                             route.destination = location
                             route.endInterval = Date().timeIntervalSince1970
@@ -115,6 +126,24 @@ extension JediWrapper: JedAIEventDelegate {
                     }
                 }
                 delegate?.onEventFinished()
+            }
+        }
+    }
+    
+    func updateRoutesWithLatestDestination() {
+        if let lastLocation = jedAi.getLastLocation() {
+            let location = Location()
+            location.latitude = lastLocation.coordinate.latitude
+            location.longitude = lastLocation.coordinate.longitude
+            
+            DispatchQueue.main.async {
+                let routeObjects = self.realm.objects(RouteObject.self).filter("endInterval == %@", 0.0)
+                routeObjects.forEach { (route) in
+                    try! self.realm.write {
+                        route.destination = location
+                        route.endInterval = lastLocation.timestamp.timeIntervalSince1970
+                    }
+                }
             }
         }
     }

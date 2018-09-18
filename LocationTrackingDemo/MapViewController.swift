@@ -48,11 +48,14 @@ class MapViewController: UIViewController {
         if let route = routes.last {
             show(route: route)
         }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationWillTerminate), name: NSNotification.Name.UIApplicationWillTerminate, object: nil)
     }
     
     deinit {
         jediWrapper.stop()
         jediWrapper.unregister()
+        NotificationCenter.default.removeObserver(self)
     }
     
     func constructRoute(locations: [CLLocation]) {
@@ -71,6 +74,10 @@ class MapViewController: UIViewController {
                 self.mapView.showAnnotations([annotationStart, annotationEnd], animated: true)
             }
         }
+    }
+    
+    @objc func applicationWillTerminate() {
+        jediWrapper.updateRoutesWithLatestDestination()
     }
     
 }
