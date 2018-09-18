@@ -1,4 +1,7 @@
 PODS:
+  - HockeySDK (5.1.2):
+    - HockeySDK/DefaultLib (= 5.1.2)
+  - HockeySDK/DefaultLib (5.1.2)
   - jedai.pod (4.2.1)
   - Realm (3.9.0):
     - Realm/Headers (= 3.9.0)
@@ -7,11 +10,13 @@ PODS:
     - Realm (= 3.9.0)
 
 DEPENDENCIES:
+  - HockeySDK
   - jedai.pod (from `https://github.com/AnagogLtd/JedAI.git`, tag `4.2.1`)
   - RealmSwift
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - HockeySDK
     - Realm
     - RealmSwift
 
@@ -26,10 +31,11 @@ CHECKOUT OPTIONS:
     :tag: 4.2.1
 
 SPEC CHECKSUMS:
+  HockeySDK: 38b7e2726af1ea86ae97ce4b5de33ab0817e3500
   jedai.pod: 1c74e6d838220b7bf8097826dc4c5e4d006f0bb9
   Realm: 3d36f208bf3aff8335dc3298742140182bde4edb
   RealmSwift: aa4d11917bfcfaa3ed51f219102a487ecd895447
 
-PODFILE CHECKSUM: 76eeff4eb5fa08865dedef6b84fad65ba35eb1e6
+PODFILE CHECKSUM: da78e80b28e3a10a02f2b8c4b16a4c1570e27b92
 
 COCOAPODS: 1.5.3

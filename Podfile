@@ -5,5 +5,6 @@ target 'LocationTrackingDemo' do
   
   pod 'jedai.pod', :git => 'https://github.com/AnagogLtd/JedAI.git', :tag => "4.2.1"
   pod 'RealmSwift'
+  pod 'HockeySDK'
 
 end
