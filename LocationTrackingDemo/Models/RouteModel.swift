@@ -29,3 +29,11 @@ class RouteObject: Object {
     @objc dynamic var startInterval: TimeInterval = 0.0
     @objc dynamic var endInterval: TimeInterval = 0.0
 }
+
+extension RouteObject {
+    static func all(in realm: Realm = try! Realm()) -> Results<RouteObject> {
+        return realm.objects(RouteObject.self)
+    }
+}
+
+

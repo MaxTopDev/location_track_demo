@@ -57,7 +57,7 @@ class MapViewController: UIViewController {
         // setup the instances
         jediWrapper = JediWrapper(realm: realm)
         jediWrapper.delegate = self
-        routes = realm.objects(RouteObject.self)
+        routes = RouteObject.all(in: realm)
         // ask for lcoation permission
         locationTracker.askForLocationPermission { [unowned self] (determined, allowed) in
             if allowed == true {

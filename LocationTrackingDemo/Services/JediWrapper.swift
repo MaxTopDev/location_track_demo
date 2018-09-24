@@ -118,7 +118,7 @@ extension JediWrapper: JedAIEventDelegate {
             if rideEvent.isStart {
                 // finish all previous routes by setting the current start date and location
                 DispatchQueue.main.async {
-                    let routeObjects = self.realm.objects(RouteObject.self).filter("endInterval == %@", 0.0)
+                    let routeObjects = RouteObject.all(in: self.realm).filter("endInterval == %@", 0.0)
                     routeObjects.forEach { (route) in
                         try! self.realm.write {
                             route.destination = location
@@ -141,7 +141,7 @@ extension JediWrapper: JedAIEventDelegate {
                 
                 // find the latest route (unfinished) and set the destination to finish it
                 DispatchQueue.main.async {
-                    let routeObjects = self.realm.objects(RouteObject.self).filter("endInterval == %@", 0.0)
+                    let routeObjects = RouteObject.all(in: self.realm).filter("endInterval == %@", 0.0)
                     if let route = routeObjects.first {
                         try! self.realm.write {
                             route.destination = location
@@ -162,7 +162,7 @@ extension JediWrapper: JedAIEventDelegate {
             location.latitude = lastLocation.coordinate.latitude
             location.longitude = lastLocation.coordinate.longitude
             DispatchQueue.main.async {
-                let routeObjects = self.realm.objects(RouteObject.self).filter("endInterval == %@", 0.0)
+                let routeObjects = RouteObject.all(in: self.realm).filter("endInterval == %@", 0.0)
                 routeObjects.forEach { (route) in
                     try! self.realm.write {
                         route.destination = location
